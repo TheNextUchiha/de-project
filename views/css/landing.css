@@ -1,0 +1,113 @@
+/* ----------------------------- */
+/* ---> Basic Setup <--- */
+/* ----------------------------- */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    background-color: #ffffff;
+    color: #555555;
+    font-family: 'Lato', 'Arial', sans-serif ;
+    font-size: 20px;
+    font-weight: 300;
+    text-rendering: optimizeLegibility;
+}
+/* ----------------------------- */
+/* ---> Reusable components <--- */
+/* ----------------------------- */
+
+.row{
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+
+.logo {
+    height: 100px;
+    width: auto;
+    float: left;
+    margin-top: 20px;
+}
+
+/* ----> Header <---- */
+
+header{
+    background-image:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url(images/images/background/pxfuel.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+}
+
+/* ----> Main Text <---- */
+
+.text-box { 
+    position: absolute;
+    width: 1140px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 3px;
+    font-size: 240%;
+    color: #ffffff;
+}
+
+/* ----> Buttons <----*/
+
+.btn-full {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 100px;
+}
+
+.btn-full:link,
+.btn-full:visited {    
+    background-color: #e67e22;
+    border: 1px solid #e67e22;
+    color: #ffffff;
+    margin-right: 15px;
+}
+
+.btn-full:hover,
+.btn-full:active {
+    background-color:#c4600a;
+    border: 1px solid #c4600a;
+    transition: background-color 0.3s, border 0.3s, color 0.3s;
+}
+
+.btn-ghost {
+    display: inline-block;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 100px;
+}
+
+.btn-ghost:link,
+.btn-ghost:visited {    
+    border: 2px solid #e67e22;
+    color: #ffffff;
+    margin-right: 15px;
+}
+
+.btn-ghost:hover,
+.btn-ghost:active {
+    background-color:#c4600a;
+    border: 2px solid #c4600a;
+    color: #ffffff;
+    transition: background-color 0.3s, border 0.3s, color 0.3s;
+}
