@@ -6,7 +6,7 @@ html{
 body{
     margin: 0;
     padding: 0;
-    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(images/images/background/pxfuel.jpg);
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(images/background/pxfuel-min.jpg);
     background-size: cover;
     font-family: sans-serif;
     background-position: center;
