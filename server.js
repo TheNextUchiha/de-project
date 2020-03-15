@@ -56,6 +56,10 @@ app.get('/editprofile', (req, res) => {
     res.render('editprofile.hbs');
 });
 
+app.get('/home', (req, res) => {
+    res.render('home.hbs');
+});
+
 app.get('/bad',(req, res) => {
     res.send({
         errorMessage: 'An error occured bruh'
