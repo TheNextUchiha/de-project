@@ -4,7 +4,8 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
-const port = process.env.PORT || 1234;
+const port = process.env.OPENSHIFT_NODEJS_PORT || 1234;
+const address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 var app = express();
 
 //Handlebars Setup
@@ -67,6 +68,6 @@ app.get('/bad',(req, res) => {
 });
 
 //App initialization at Express server on a specified port no.
-app.listen(port, () => {
-    console.log(`Server is up at port ${port}`);
+app.listen(port, address, () => {
+    console.log(`Server is up at port ${port} on ${address}`);
 });

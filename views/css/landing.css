@@ -37,7 +37,7 @@ html{
 /* ----> Header <---- */
 
 header{
-    background-image:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url(images/background/pxfuel-min.jpg);
+    background-image:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url(./../images/background/pxfuel.jpg);
     background-size: cover;
     background-position: center;
     height: 100vh;
