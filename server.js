@@ -4,8 +4,11 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
-const port = process.env.OPENSHIFT_NODEJS_PORT || 1234;
-const address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+// const port = process.env.OPENSHIFT_NODEJS_PORT || 1234;
+// console.log("Port: ", process.env.OPENSHIFT_NODEJS_PORT);
+// console.log("Poer new: ", specs.port[0].port);
+// const address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
+// console.log(process.env.OPENSHIFT_NODEJS_IP);
 var app = express();
 
 //Handlebars Setup
@@ -68,6 +71,12 @@ app.get('/bad',(req, res) => {
 });
 
 //App initialization at Express server on a specified port no.
-app.listen(port, address, () => {
-    console.log(`Server is up at port ${port} on ${address}`);
+
+// app.listen(port, address, () => {
+//     console.log(`Server is up at port ${port} on ${address}`);
+// });
+
+var server = app.listen(8080, () => {
+    var port = server.address().port;
+    console.log(`Server is up at port ${port}`);
 });
