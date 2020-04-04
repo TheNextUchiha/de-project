@@ -70,3 +70,38 @@ header{
 .main-nav li a:active {
     border-bottom: 2px solid #cf6d17;
 }
+
+.main-nav li .logout-btn {
+    background: none;
+    color: #ffffff;
+    border: inherit;
+    padding: 8px 0;
+    margin: 0;
+	cursor: pointer;
+    outline: inherit;
+	font-family: 'Lato','Arial',sans-serif;
+    font-size: 90%;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.main-nav li .logout-btn:link,
+.main-nav li .logout-btn:visited {
+    display: inline-block;
+    border-bottom: 2px solid transparent;
+    transition: border-bottom 0.2s;
+}
+
+.main-nav li .logout-btn:hover,
+.main-nav li .logout-btn:active {
+    border-bottom: 2px solid #cf6d17;
+}
+
+/* Section */
+
+section{
+    background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1));
+    background-position: center;
+    background-size: contain;
+    height: 22vh;
+}

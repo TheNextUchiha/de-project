@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="./css/login.css">
-</head>
-<body>
-            <div class="loginbox">
-                <img src="images/logo/avatar2.jpg" class="avatar">
-                    <h1>Login Here</h1>
-                    <form>
-                        <p>Username</p>
-                        <input type="text" name="" placeholder="Enter Username">
-                        <p>Password</p>
-                        <input type="password" placeholder="Enter Password">
-                        <input type="submit" value="Login">
-                        <a href="#">Forgot Password?</a><br>
-                        <a href="/signup">Don't have an account?</a>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login - Lost & Found Center</title>
+        <link rel="stylesheet" type="text/css" href="./css/login.css">
+        <link rel="stylesheet" type="text/css" href="./css/loginresp.css">
+    </head>
+    <body>
+        <div class="loginbox">
+            <img src="images/logo/avatar2.jpg" class="avatar">
+            <h1>Login Here</h1>
+            <form action="login" method="POST">
+                <label for="username">Username</label>
+                <input type="text" name="username" placeholder="Enter Username">
 
-                    </form>
+                <label for="password">Password</label>
+                <input type="password" name="password" placeholder="Enter Password">
+                <div class="error">
+                    {{#if error}}
+                        <p>{{errorMessage}}</p>
+                    {{/if}}
+                </div>
+                <input type="submit" value="Login">
 
-            </div>
-</body>
+                <a href="#">Forgot Password?</a><br>
+                <a href="/signup">Don't have an account?</a>
+            </form>
+        </div>
+    </body>
 </html>

@@ -1,25 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" type="text/css" href="css/home.css">
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700&display=swap" rel="stylesheet">
-    <title>Home</title>
-</head>
-<body>
-    <header>
-        <nav>
-            <div class="row">
-                <img class="logo" src="images/logo/round_l&f.png" alt="logo">
-            </div>
-            <ul class="main-nav">
-                <li><a href="#">Dashboard</a></li>
-                <li><a href="#">Generate QR</a></li>
-                <li><a href="editprofile.html">Edit Profile</a></li>
-            </ul>
-        </nav>
-    </header>
-</body>
+        <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700&display=swap" rel="stylesheet">
+        <title>Home</title>
+    </head>
+    <body>
+        <header>
+            <nav>
+                <div class="row">
+                    <img class="logo" src="images/logo/round_l&f.png" alt="logo">
+                </div>
+                <ul class="main-nav">
+                    <li><a href="/home">Dashboard</a></li>
+                    <li><a href="#">Generate QR</a></li>
+                    <li><a href="/editprofile">Edit Profile</a></li>
+                    <li>
+                    <form action="/logout" method="GET">
+                        <input type="submit" class="logout-btn" value="Logout">
+                    </form>
+                </li>
+                </ul>
+            </nav>
+            <section>
+            
+            </section>
+        </header>
+    </body>
 </html>

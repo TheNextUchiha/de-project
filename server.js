@@ -1,34 +1,48 @@
 //cmd for Heroku & gitbash for Git and Github
+// require('dotenv').config();
 
 const express = require('express');
 const hbs = require('hbs');
-const fs = require('fs');
+const _ = require('lodash');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const passport = require('passport');
 
-// const port = process.env.OPENSHIFT_NODEJS_PORT || 1234;
-// console.log("Port: ", process.env.OPENSHIFT_NODEJS_PORT);
-// console.log("Poer new: ", specs.port[0].port);
-// const address = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
-// console.log(process.env.OPENSHIFT_NODEJS_IP);
+const {mongoose} = require('./server/db/mongoose');
+const {User} = require('./server/models/user');
+
+
+require('./passport-config')(passport);
+
+const index = require('./routes/index');
+// const users = require('./routes/users');
+// const auth = require('./routes/auth')(passport);
+
 var app = express();
 
 //Handlebars Setup
 app.set('view engine','hbs');
 
-//Express Middle-wares
-// app.use((req, res, next) => {
-//     var now = new Date().toString();
-//     var log = `${now}: ${req.method} ${req.url}`;
+// ----> Express Middle-wares <-----
+app.use(express.urlencoded({extended: false})); // To Parse URL data
+app.use(express.json());                        // To Parse JSON data
+app.use(cookieParser());                        // To Parse Cookie data
+app.use(express.static(__dirname + '/views'));  // To include static HTML pages
+app.use(session({                               // Session Config
+    secret: 'mysecret',
+    saveUninitialized: false,
+    resave: false
+}));
 
-//     console.log(log);
-//     fs.appendFile('server.log',log + '\n',(err) => {
-//         if(err) {
-//             console.log('Unable to append to server.log');
-//         }
-//     });
-//     next();
-// });
+// Passport Setup
+app.use(passport.initialize());     // Passport Initialization
+app.use(passport.session());        // Passport Session Management
 
-/* ---> Maintenance Mode <---
+// Routes
+app.use('/', index);
+
+/*
+-----> Maintenance Mode <-----
 
 app.use((req, res, next) => { 
     res.render('maintenance.hbs');
@@ -36,45 +50,7 @@ app.use((req, res, next) => {
 
 */
 
-app.use(express.static(__dirname + '/views')); // To include static HTML pages
-
-//Handlebars Helpers
-hbs.registerHelper('getCurrentYear', () => {
-    return new Date().getFullYear();
-});
-
-//Request Handlers
-app.get('/', (req, res) => {
-    res.render('landing.hbs');
-});
-
-app.get('/login', (req, res) => {
-    res.render('login.hbs');
-});
-
-app.get('/signup', (req, res) => {
-    res.render('signup.hbs');
-});
-
-app.get('/editprofile', (req, res) => {
-    res.render('editprofile.hbs');
-});
-
-app.get('/home', (req, res) => {
-    res.render('home.hbs');
-});
-
-app.get('/bad',(req, res) => {
-    res.send({
-        errorMessage: 'An error occured bruh'
-    });
-});
-
 //App initialization at Express server on a specified port no.
-
-// app.listen(port, address, () => {
-//     console.log(`Server is up at port ${port} on ${address}`);
-// });
 
 var server = app.listen(8080, () => {
     var port = server.address().port;

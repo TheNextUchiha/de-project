@@ -1,0 +1,100 @@
+/* From big tablets to 1300px(width smaller then the 1140px row */
+@media only screen and (max-width: 1200px) {
+
+    .text-box{
+        width: 1024px;
+    }
+
+    .logo {
+        margin-left: 20px;
+    }
+
+    h1{
+        margin-left: 20px;
+    }
+
+    .btn-full{
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+}
+
+
+/* Small tablets to Big tablets: from 768 pixels to 1023 pixels */
+@media only screen and (max-width: 1023px) {
+    .text-box{
+        width: 768px;
+    }
+
+    .logo {
+        margin-left: 20px;
+    }
+
+    h1{
+        margin-left: 20px;
+    }
+
+    .btn-full{
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+}
+
+
+/* Small phones to snall tablets: from 481 pixels to 767 pixels */
+@media only screen and (max-width: 767px) {
+    h1{
+        font-size: 140%;
+        margin-left: 20px;
+    }
+
+    .text-box{
+        width: 481px;
+        margin-top: -30px;
+    }
+
+    body{
+        overflow-x: hidden;
+    }
+
+    .logo {
+        height: 80px;
+        margin-left: 20px;
+    }
+
+    .btn-full{
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    
+}
+
+
+/* Small Phones: from 0 to 480 pixels*/
+@media only screen and (max-width: 480px) {
+    h1{
+        font-size: 120%;
+        margin-left: 20px;
+    }
+
+    .text-box{
+        width: 300px;
+        margin-top: -60px;
+    }
+
+    body{
+        overflow-x: hidden;
+    }
+
+    .logo {
+        height: 60px;
+        margin-left: 20px;
+    }
+
+    .btn-full,.btn-ghost{
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+
+
+}
