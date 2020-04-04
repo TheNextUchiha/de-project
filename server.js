@@ -20,7 +20,7 @@ var app = express();
 app.set('view engine','hbs');
 
 // ----> Express Middle-wares <-----
-app.use(favicon(__dirname + 'public/icons/favicon.ico'));   // To serve Favicon to the client
+app.use(favicon(__dirname + '/public/icons/favicon.ico'));   // To serve Favicon to the client
 app.use(express.urlencoded({extended: false}));             // To Parse URL data
 app.use(express.json());                                    // To Parse JSON data
 app.use(cookieParser());                                    // To Parse Cookie data
