@@ -1,6 +1,7 @@
 //cmd for Heroku & gitbash for Git and Github
 
 const express = require('express');
+const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const passport = require('passport');
