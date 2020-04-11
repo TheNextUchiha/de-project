@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reset Password - Lost & Found Center</title>
+    <link rel="stylesheet" type="text/css" href="./css/forgotverify.css">
+    <link rel="stylesheet" type="text/css" href="./css/forgotverifyresp.css">
+</head>
+<body>
+    <div class="loginbox">
+        <img src="./images/logo/avatar2.jpg" class="avatar">
+            <h1>Forgot your Password?</h1>
+            <h4>Enter your details to recover</h2>
+            
+            <form action="forgot-verify" method="POST">
+                <p>Select a Security Question</p>
+                <select name="sec_que" id="sec_que" >
+                    <option value="1">Your Elementry School Name</option>
+                    <option value="2">Your Car Number</option>
+                    <option value="3">Your Nickname</option>
+                    <option value="4">Your Pet's Name</option>
+                    <option value="5">Your Favorite Book</option>
+                </select> <br><br>
+                <input type="text" class="form-control" id="sec_que" placeholder="Your Answer">
+
+                <input type="submit" name="" value="Submit">
+
+            </form>
+    </div>
+</body>
+</html>

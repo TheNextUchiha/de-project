@@ -1,0 +1,66 @@
+/* Small phones to small tablets: from 481 pixels to 767 pixels */
+@media only screen and (max-width: 767px) {
+    body{
+        overflow-x: hidden;
+    }
+
+    .avatar{
+        width: 80px;
+        height: 80px;
+        top: -40px;
+        left: calc(50% - 40px);
+    }
+}
+
+/* Small Phones: from 0 to 480 pixels*/
+@media only screen and (max-width: 480px) {
+
+    body{
+        overflow-x: hidden;
+    }
+
+    .loginbox{
+        width: 280px;
+        height: 470px;
+    }
+
+    .loginbox input[type="submit"]
+    {
+        font-size: 16px;
+    }
+
+    .loginbox input[type="text"] ,input[type="email"]
+    {
+        border: none;
+        font-size: 13px;
+        font-weight: 100;
+        border-bottom: 1px solid #fff;
+    }
+
+    #sec_que
+    {
+        font-size: 14px;
+        width: 230px;
+    }
+
+
+    h1{
+        font-size: 18px;
+        margin-top: -10px;
+
+    }
+
+    .avatar{
+        width: 70px;
+        height: 70px;
+        top: -35px;
+        left: calc(50% - 35px);
+    }
+
+    #savebtn{
+        width: 160px;
+        margin-left:30px;
+        margin-top: 20px;
+        margin-bottom: 40px;
+    }
+}
