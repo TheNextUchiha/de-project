@@ -100,8 +100,55 @@ header{
 /* Section */
 
 section{
-    background-image: linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.1));
+    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
     background-position: center;
-    background-size: contain;
+    background-size: cover;
     height: 22vh;
 }
+
+
+.main-details{
+    padding: 0 9%;
+    color: black;
+}
+
+
+h1 {
+    padding-top: 180px;
+    padding-bottom: 20px;
+    font-size: 200%;
+    font-weight: 400;
+    color: black;
+}
+
+.details label {
+    color: #e67e22;
+    line-height: 180%;
+}
+
+.qr-btn {
+    display: inline-block;
+    margin-top: 50px;
+    padding: 10px 30px;
+    font-weight: 300;
+    text-decoration: none;
+    border-radius: 100px;
+}
+
+.qr-btn:link,
+.qr-btn:visited {    
+    background-color: #e67e22;
+    border: 1px solid #e67e22;
+    color: #ffffff;
+}
+
+.qr-btn:hover,
+.qr-btn:active {
+    background-color:#c4600a;
+    border: 1px solid #c4600a;
+    transition: background-color 0.3s, border 0.3s, color 0.3s;
+}
+
+
+
+

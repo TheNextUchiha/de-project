@@ -15,18 +15,27 @@
                     <img class="logo" src="images/logo/round_l&f.png" alt="logo">
                 </div>
                 <ul class="main-nav">
-                    <li><a href="/home">Dashboard</a></li>
-                    <li><a href="#">Generate QR</a></li>
                     <li><a href="/editprofile">Edit Profile</a></li>
                     <li>
-                    <form action="/logout" method="GET">
-                        <input type="submit" class="logout-btn" value="Logout">
-                    </form>
-                </li>
+                        <form action="/logout" method="GET">
+                            <input type="submit" class="logout-btn" value="Logout">
+                        </form>
+                    </li>
                 </ul>
             </nav>
             <section>
-            
+            <div class="main-details">
+                <div class="details">
+                    <h1>Dashboard</h1>
+                    <label for="name">Name : {{ name }} </label><br>
+                    <label for="email">Email ID : {{ email }}</label><br>
+                    <label for="contact">Contact Number : {{ mobilenum }}</label><br>
+                    <label for="address">Address : {{ address }}</label><br>
+                </div>
+                <div>
+                    <a class="qr-btn" href="#">Generate QR</a>
+                </div>
+            </div>
             </section>
         </header>
     </body>

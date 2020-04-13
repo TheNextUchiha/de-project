@@ -30,18 +30,6 @@ router.get('/forgot', (req, res) => {
     res.render('forgot');
 });
 
-router.get('/forgot-verify', (req, res) => {
-    console.log('Request object: ', req);
-    console.log('req.body: ', req.body);
-    console.log('req.headers', req.headers);
-
-    res.render('forgotverify');
-});
-
-router.get('/forgot-reset', (req, res) => {
-    res.render('forgot');
-});
-
 router.get('/signup', (req, res) => {
     res.render('signup');
 });
@@ -53,24 +41,35 @@ router.get('/editprofile', loggedin, (req, res) => {
 router.get('/home', loggedin, (req, res) => {
     const userID = req.session.passport.user.userID;
     User.findById(userID, (err, user) => {
-        if(!err) {
-            if(user.counter === 0) {
-                return res.redirect('editprofile');
-            } else {
-                User.findByIdAndUpdate(userID, {
-                    $inc: {
-                        counter: 1
-                    }
-                }, (err, result) => {
-                    if(!err) {
-                        res.render('home');
-                    } else {
-                        res.redirect('login');
-                    }
-                });
-            }
+        if(err) {
+            return res.redirect('login');
+        }
+
+        if(user.counter === 0) {
+            return res.redirect('editprofile');
         } else {
-            res.redirect('login');
+            User.findByIdAndUpdate(userID, {
+                $inc: {
+                    counter: 1
+                }
+            }, (err, result) => {
+                if(err) {
+                    return res.redirect('login');
+                }
+                
+                UserDetails.findOne({userID}, (err, result) => {
+                    if(err) {
+                        return res.redirect('login');
+                    }
+                    
+                    res.render('home', {
+                        name: result.name,
+                        mobilenum: result.mobilenum,
+                        address: result.address,
+                        email: user.email
+                    });
+                });
+            });
         }
     });
 });
@@ -202,22 +201,67 @@ router.post('/forgot', (req, res) => {
     });
 });
 
-// router.post('/forgot-verify', (req, res) => {
-//     // const {email} = req.body;
-
-//     console.log('req.body: ', req.body);
-//     console.log('req.headers', req.headers);
-
-//     User.findOne({email}, (err, user) => {
-//         if(!user) {
-//             return res.render('forgot', {
-//                 error: true,
-//                 errorMessage:  'User not Found'
-//             });
-//         }
-
-//         res.redirect('/forgot-verify');
-//     });
-// });
-
 module.exports = router;
+
+
+/*
+-----> Under GET /home <-----
+
+    if(!err) {
+        if(user.counter === 0) {
+            return res.redirect('editprofile');
+        } else {
+            User.findByIdAndUpdate(userID, {
+                $inc: {
+                    counter: 1
+                }
+            }, (err, result) => {
+                if(!err) {
+                    res.render('home');
+                } else {
+                    res.redirect('login');
+                }
+            });
+        }
+    } else {
+        res.redirect('login');
+    }
+
+    -----> GET /forgot-verify <-----
+
+    router.get('/forgot-verify', (req, res) => {
+        console.log('Request object: ', req);
+        console.log('req.body: ', req.body);
+        console.log('req.headers', req.headers);
+
+        res.render('forgotverify');
+    });
+
+    -----> GET /forgot-reset <-----
+
+    router.get('/forgot-reset', (req, res) => {
+        res.render('forgot');
+    });
+
+
+    -----> POST /forgot-verify <-----
+
+    router.post('/forgot-verify', (req, res) => {
+    const {email} = req.body;
+
+    console.log('req.body: ', req.body);
+    console.log('req.headers', req.headers);
+
+    User.findOne({email}, (err, user) => {
+        if(!user) {
+            return res.render('forgot', {
+                error: true,
+                errorMessage:  'User not Found'
+            });
+        }
+
+        res.redirect('/forgot-verify');
+    });
+});
+
+*/
