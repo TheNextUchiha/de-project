@@ -38,7 +38,7 @@ router.get('/editprofile', loggedin, (req, res) => {
 });
 
 router.get('/users/:UserID', (req, res) => {
-    const UserID = req.param.UserID;
+    const UserID = req.params.UserID;
     console.log(req.params);
 
     UserDetails.findOne({UserID}, (err, result) => {
