@@ -33,7 +33,14 @@
                     <label for="address">Address : {{ address }}</label><br>
                 </div>
                 <div>
-                    <a class="qr-btn" href="#">Generate QR</a>
+                    {{!-- {{#each images}}
+                        <div style="padding-bottom:1em;">
+                            <a href="/images/{{ uniqueId }}">
+                                <img src="/public/upload/{{filename}}" alt="{{title}}" style="width: 175px; height: 175px;" class="img-thumbnail">
+                            </a>
+                        </div>
+                    {{/each}} --}}
+                    <a class="qr-btn" href="/generate-qr">Generate QR</a>
                 </div>
             </div>
             </section>

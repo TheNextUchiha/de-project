@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
 const {ObjectID} = require('mongodb');
+const crypto = require('crypto');
+const format = require('biguint-format');
+
+let defMobileNum = 0;
 
 var UserDetailsSchema = new mongoose.Schema({
     userID: {
@@ -19,7 +23,7 @@ var UserDetailsSchema = new mongoose.Schema({
         type: Number,
         // required: true,
         unique: true,
-        default: undefined,
+        default: format(crypto.randomBytes(4), 'dec'),
         minlength: 10,
         maxlength: 10
     },
@@ -44,6 +48,9 @@ var UserDetailsSchema = new mongoose.Schema({
         // required: true,
         trim: true,
         default: undefined
+    },
+    qr: {
+        type: String
     }
 });
 

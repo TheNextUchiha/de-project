@@ -7,7 +7,6 @@ const {ObjectID} = require('mongodb');
 var {User} = require('./../server/models/user');
 var {UserDetails} = require('./../server/models/userDetails');
 
-
 // To check if a user is logged in or not
 var loggedin = (req, res, next) => {
     if(req.isAuthenticated()) {
@@ -38,8 +37,51 @@ router.get('/editprofile', loggedin, (req, res) => {
     res.render('editprofile');
 });
 
+router.get('/users/:UserID', (req, res) => {
+    const UserID = req.param.UserID;
+    console.log(req.params);
+
+    UserDetails.findOne({UserID}, (err, result) => {
+        if(err) {
+            return res.status(404).send();
+        }
+
+        res.render('qr-result', {
+            name: result.name,
+            mobilenum: result.mobilenum,
+            address: result.address,
+            email: result.email
+        });
+    });
+
+});
+
+router.get('/generate-qr', loggedin, (req, res) => {
+    const userID = req.session.passport.user.userID; 
+    
+    UserDetails.findOneAndUpdate({userID}, {
+        $set: {
+            qr: 'http://api.qrserver.com/v1/create-qr-code/?data=http://de-project-git-de-project-237244.apps.us-east-1.starter.openshift-online.com/users/'+userID+'&size=800x800'
+        }
+    }, (err, result) => {
+        if(err) {
+            console.log('ERROR: ', err);
+            return res.redirect('editprofile');
+        }
+    });
+
+    UserDetails.findOne({userID}, (err, result) => {
+        if(err) {
+            return res.redirect('home');
+        }
+
+        res.send('<img src="'+result.qr+'">');
+    });
+});
+
 router.get('/home', loggedin, (req, res) => {
     const userID = req.session.passport.user.userID;
+
     User.findById(userID, (err, user) => {
         if(err) {
             return res.redirect('login');
@@ -124,63 +166,63 @@ router.post('/editprofile', (req, res) => {
     const userID = new ObjectID(req.session.passport.user.userID);
     
     User.findById(userID, (err, user) => {
-        if(!err) {
-            if(user.counter === 0) {
-                body.sec_ans = body.sec_ans.toLowerCase();
-                const userDetails = new UserDetails({
-                    userID: new ObjectID(user._id),
+        if(err) {
+            console.log('ERROR: ', err);
+            return res.render('home', {
+                error: true,
+                errorMessage: 'idk but User not found'
+            });
+
+        }
+        if(user.counter === 0) {
+            body.sec_ans = body.sec_ans.toLowerCase();
+            const userDetails = new UserDetails({
+                userID: new ObjectID(user._id),
+                name: body.name,
+                mobilenum: body.mobile,
+                state: body.state,
+                address: body.address,
+                sec_que: body.sec_que,
+                sec_ans: body.sec_ans.toLowerCase()
+            });    
+
+            userDetails.save((err, user) => {
+                if(err) {
+                    return res.render('home');
+                } 
+                
+                res.send();
+            });
+
+            User.findByIdAndUpdate(userID, {
+                $inc: {
+                    counter:1
+                }
+            }, (err, result) => {
+                if(err) {
+                    console.log('ERROR WHILE INCREMENTING');
+                    return res.redirect('login');
+                }
+                
+                res.redirect('home');
+            });
+        } else {
+            UserDetails.findOneAndUpdate({userID}, {
+                $set: {
                     name: body.name,
                     mobilenum: body.mobile,
                     state: body.state,
                     address: body.address,
                     sec_que: body.sec_que,
                     sec_ans: body.sec_ans.toLowerCase()
-                });    
+                }
+            }, (err, result) => {
+                if(err) {
+                    console.log('ERROR: ', err);
+                    return res.redirect('editprofile');
+                }
 
-                userDetails.save((err, user) => {
-                    if(!err) {
-                        res.send();
-                    } else {
-                        res.render('home');
-                    }
-                });
-
-                User.findByIdAndUpdate(userID, {
-                    $inc: {
-                        counter:1
-                    }
-                }, (err, result) => {
-                    if(!err) {
-                        res.redirect('home');
-                    } else {
-                        console.log('ERROR WHILE INCREMENTING');
-                        res.redirect('login');
-                    }
-                });
-            } else {
-                UserDetails.findOneAndUpdate({userID}, {
-                    $set: {
-                        name: body.name,
-                        mobilenum: body.mobile,
-                        state: body.state,
-                        address: body.address,
-                        sec_que: body.sec_que,
-                        sec_ans: body.sec_ans.toLowerCase()
-                    }
-                }, (err, result) => {
-                    if(!err) {
-                        res.redirect('home');
-                    } else {
-                        console.log('ERROR: ', err);
-                        res.redirect('editprofile');
-                    }
-                });
-            }
-        } else {
-            console.log('ERROR: ', err);
-            res.render('home', {
-                error: true,
-                errorMessage: 'idk but User not found'
+                res.redirect('home');
             });
         }
     });
