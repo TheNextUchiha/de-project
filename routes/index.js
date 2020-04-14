@@ -39,12 +39,15 @@ router.get('/editprofile', loggedin, (req, res) => {
 
 router.get('/users/:UserID', (req, res) => {
     const UserID = req.params.UserID;
-    console.log(req.params);
+    console.log('Params: ', req.params);
+    cosnole.log('UserID: ', UserID);
 
     UserDetails.findOne({UserID}, (err, result) => {
         if(err) {
             return res.status(404).send();
         }
+
+        console.log('RESULT: ', result);
 
         res.render('qr-result', {
             name: result.name,
