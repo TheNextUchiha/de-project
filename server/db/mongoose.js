@@ -24,16 +24,16 @@ mongoose.set('useCreateIndex', true);
 const localURI = 'mongodb://localhost:27017/LostAndFound';
 const mongoURI = 'mongodb+srv://farzanpira:fUFZNi6HKiPftVIe@lostandfoundcenter-gqm3k.mongodb.net/LostAndFound?retryWrites=true&w=majority';
 
-mongoose.connect(mongoURI, {  // For Online
+mongoose.connect(mongoURI, {      // For Online
     useUnifiedTopology: true, 
     useNewUrlParser: true,
     useFindAndModify: false
 });
-
-module.exports = {mongoose};
 
 // mongoose.connect(localURI, {      // For Offline
 //   useUnifiedTopology: true, 
 //   useNewUrlParser: true,
 //   useFindAndModify: false
 // });
+
+module.exports = {mongoose};

@@ -40,7 +40,7 @@ router.get('/editprofile', loggedin, (req, res) => {
 router.get('/users/:UserID', (req, res) => {
     const UserID = req.params.UserID;
     console.log('Params: ', req.params);
-    cosnole.log('UserID: ', UserID);
+    console.log('UserID: ', UserID);
 
     UserDetails.findOne({UserID}, (err, result) => {
         if(err) {
@@ -64,7 +64,7 @@ router.get('/generate-qr', loggedin, (req, res) => {
     
     UserDetails.findOneAndUpdate({userID}, {
         $set: {
-            qr: 'http://api.qrserver.com/v1/create-qr-code/?data=http://de-project-git-de-project-237244.apps.us-east-1.starter.openshift-online.com/users/'+userID+'&size=800x800'
+            qr: 'http://api.qrserver.com/v1/create-qr-code/?data=http://de-project-git-de-project-237244.apps.us-east-1.starter.openshift-online.com/users/'+userID+'&size=600x600'
         }
     }, (err, result) => {
         if(err) {
