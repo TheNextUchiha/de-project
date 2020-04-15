@@ -44,7 +44,7 @@ router.get('/users/:UserID', (req, res) => {
         if(err) {
             return res.status(404).send();
         }
-        User.findById(userDetails, (err, result) => {
+        User.findById(userID, (err, result) => {
             if(err) {
                 return res.status(404).send();
             }
