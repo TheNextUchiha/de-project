@@ -48,6 +48,7 @@ router.get('/users/:UserID', (req, res) => {
         }
 
         console.log('RESULT: ', result);
+        console.log('ERROR: ', err);
 
         res.render('qr-result', {
             name: result.name,
@@ -69,7 +70,7 @@ router.get('/generate-qr', loggedin, (req, res) => {
     }, (err, result) => {
         if(err) {
             console.log('ERROR: ', err);
-            return res.redirect('editprofile');
+            return res.redirect('home');
         }
     });
 
