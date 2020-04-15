@@ -38,11 +38,11 @@ router.get('/editprofile', loggedin, (req, res) => {
 });
 
 router.get('/users/:UserID', (req, res) => {
-    const UserID = req.params.UserID;
+    const userID = req.params.UserID;
     console.log('Params: ', req.params);
     console.log('UserID: ', UserID);
 
-    UserDetails.findOne({UserID}, (err, result) => {
+    UserDetails.findOne({userID}, (err, result) => {
         if(err) {
             return res.status(404).send();
         }
