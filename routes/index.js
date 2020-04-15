@@ -3,6 +3,7 @@ const router = express.Router();
 const _ = require('lodash');
 const passport = require('passport');
 const {ObjectID} = require('mongodb');
+const fs = require('fs');
 
 var {User} = require('./../server/models/user');
 var {UserDetails} = require('./../server/models/userDetails');
@@ -64,7 +65,7 @@ router.get('/generate-qr', loggedin, (req, res) => {
     
     UserDetails.findOneAndUpdate({userID}, {
         $set: {
-            qr: 'http://api.qrserver.com/v1/create-qr-code/?data=http://de-project-git-de-project-237244.apps.us-east-1.starter.openshift-online.com/users/'+userID+'&size=600x600'
+            qr: 'http://api.qrserver.com/v1/create-qr-code/?data=http://de-project-git-de-project-237244.apps.us-east-1.starter.openshift-online.com/users/'+userID+'&size=600x600&margin=10'
         }
     }, (err, result) => {
         if(err) {
@@ -77,8 +78,10 @@ router.get('/generate-qr', loggedin, (req, res) => {
         if(err) {
             return res.redirect('home');
         }
-
-        res.send('<img src="'+result.qr+'">');
+        
+        res.render('qr', {
+            src: result.qr
+        });
     });
 });
 

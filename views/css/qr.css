@@ -1,0 +1,77 @@
+html{
+    font-family: 'Lato', 'Arial', sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+body{
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),url(./../images/background/pxfuel-min.jpg);
+    background-size: cover;
+    font-family: sans-serif;
+    background-position: center;
+    height: 100vh;
+
+}
+
+.qrimage{
+    margin-top: 20px;
+    width: 370px;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.loginbox{
+    border-radius: 5%;
+    width: 430px;
+    height: 530px;
+    background: rgb(24, 24, 24);
+    color: #fff;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    box-sizing: border-box;
+    padding: 30px 30px;
+}
+
+
+h1{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 22px;
+}
+
+h4{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 18px;
+}
+
+.loginbox input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.loginbox input[type="submit"]
+{
+    margin-top: 10px;
+    border: none;
+    outline: none;
+    height: 40px;
+    background-color: #cf6d17;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+    transition: background-color 0.3s;
+}
+
+.loginbox input[type="Submit"]:hover
+{
+    cursor: pointer;
+    background-color: #b45400;
+    color: #fff;
+}
+

@@ -5,45 +5,42 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
         <link rel="stylesheet" type="text/css" href="css/home.css">
+        <link rel="stylesheet" type="text/css" href="./home-v3resp.css">
         <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700&display=swap" rel="stylesheet">
+
         <title>Home</title>
     </head>
     <body>
         <header>
             <nav>
-                <div class="row">
-                    <img class="logo" src="images/logo/round_l&f.png" alt="logo">
-                </div>
-                <ul class="main-nav">
-                    <li><a href="/editprofile">Edit Profile</a></li>
-                    <li>
-                        <form action="/logout" method="GET">
-                            <input type="submit" class="logout-btn" value="Logout">
-                        </form>
-                    </li>
-                </ul>
+                <section>
+                    <div class="row">
+                        <img class="logo" src="./../images/logo/round_l_f.png" alt="logo">
+                    </div>
+                    <ul class="main-nav">
+                        <li><a href="/editprofile">Edit Profile</a></li>
+                        <li>
+                            <form action="/logout" method="GET">
+                                <input type="submit" class="logout-btn" value="Logout">
+                            </form>
+                        </li>
+                    </ul>
+                </section>
             </nav>
-            <section>
             <div class="main-details">
                 <div class="details">
-                    <h1>Dashboard</h1>
-                    <label for="name">Name : {{ name }} </label><br>
-                    <label for="email">Email ID : {{ email }}</label><br>
-                    <label for="contact">Contact Number : {{ mobilenum }}</label><br>
-                    <label for="address">Address : {{ address }}</label><br>
+                    <div class="loginbox">
+                        <h1>Dashboard</h1>
+                        <label for="name">Name : {{ name }} </label><br>
+                        <label for="email">Email ID : {{ email }}</label><br>
+                        <label for="contact">Contact Number : {{ mobilenum }}</label><br>
+                        <label for="address">Address : {{ address }}</label><br>
+                    </div>
                 </div>
                 <div>
-                    {{!-- {{#each images}}
-                        <div style="padding-bottom:1em;">
-                            <a href="/images/{{ uniqueId }}">
-                                <img src="/public/upload/{{filename}}" alt="{{title}}" style="width: 175px; height: 175px;" class="img-thumbnail">
-                            </a>
-                        </div>
-                    {{/each}} --}}
                     <a class="qr-btn" href="/generate-qr">Generate QR</a>
                 </div>
             </div>
-            </section>
         </header>
     </body>
 </html>

@@ -1,6 +1,6 @@
 const LocalStrategy = require('passport-local').Strategy;
 const {User} = require('./server/models/user');
-console.log('PASSPORT CONFIG EXEC');
+
 module.exports = (passport) => {
 
     passport.use(new LocalStrategy((username, password, done) => {

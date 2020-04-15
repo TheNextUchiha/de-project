@@ -1,0 +1,38 @@
+/* Small phones to snall tablets: from 481 pixels to 767 pixels */
+@media only screen and (max-width: 767px) {
+    .qrimage{
+        margin-top: 20px;
+        width: 340px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    
+    .loginbox{
+        width: 400px;
+        height: 500px;
+    }
+}
+/* Small Phones: from 0 to 480 pixels*/
+@media only screen and (max-width: 480px) {
+    .qrimage{
+        margin-top: 20px;
+        width: 230px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    
+    .loginbox{
+        width: 290px;
+        height: 420px;
+    }
+
+    h1{
+        font-weight: 100;
+        font-size: 22px;
+    }
+
+    h4{
+        font-weight: 100;
+        font-size: 18px;
+    }
+}

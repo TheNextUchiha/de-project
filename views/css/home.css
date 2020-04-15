@@ -30,6 +30,7 @@ html{
     width: auto;
     float: left;
     margin-top: 20px;
+    margin-right: 10px;
 }
 
 /* Header */
@@ -103,32 +104,33 @@ section{
     background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
     background-position: center;
     background-size: cover;
-    height: 22vh;
+    height: 150px;
 }
 
 
 .main-details{
     padding: 0 9%;
-    color: black;
+    color: white;
 }
 
 
 h1 {
-    padding-top: 180px;
+    padding-top: 20px;
+    margin-top: -20px;
     padding-bottom: 20px;
     font-size: 200%;
     font-weight: 400;
-    color: black;
+    color: rgb(255, 255, 255);
 }
 
 .details label {
     color: #e67e22;
-    line-height: 180%;
+    line-height: 190%;
 }
 
 .qr-btn {
+    margin-top: 20px;
     display: inline-block;
-    margin-top: 50px;
     padding: 10px 30px;
     font-weight: 300;
     text-decoration: none;
@@ -149,6 +151,12 @@ h1 {
     transition: background-color 0.3s, border 0.3s, color 0.3s;
 }
 
-
-
-
+.loginbox{
+    border-radius: 5%;
+    background: rgba(24, 24, 24, 0.76);
+    color: #fff;
+    height:350px;
+    width: 600px;
+    padding: 30px 30px;
+    margin-top: 40px;
+}
