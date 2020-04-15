@@ -39,25 +39,24 @@ router.get('/editprofile', loggedin, (req, res) => {
 
 router.get('/users/:UserID', (req, res) => {
     const userID = req.params.UserID;
-    console.log('Params: ', req.params);
-    console.log('UserID: ', userID);
 
-    UserDetails.findOne({userID}, (err, result) => {
+    UserDetails.findOne({userID}, (err, user) => {
         if(err) {
             return res.status(404).send();
         }
+        User.findById(userDetails, (err, result) => {
+            if(err) {
+                return res.status(404).send();
+            }
 
-        console.log('RESULT: ', result);
-        console.log('ERROR: ', err);
-
-        res.render('qr-result', {
-            name: result.name,
-            mobilenum: result.mobilenum,
-            address: result.address,
-            email: result.email
+            res.render('qr-result', {
+                name: user.name,
+                mobilenum: user.mobilenum,
+                address: user.address,
+                email: result.email
+            });
         });
     });
-
 });
 
 router.get('/generate-qr', loggedin, (req, res) => {
