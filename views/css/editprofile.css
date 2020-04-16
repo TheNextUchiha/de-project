@@ -15,10 +15,10 @@ body{
 }
 
 .loginbox{
-    margin-top: 220px;
+    margin-top: 180px;
     border-radius: 30px;
     width: 640px;
-    height: 940px;
+    height: 760px;
     background: rgb(24, 24, 24);
     color: #fff;
     top: 50%;
