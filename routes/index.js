@@ -73,19 +73,15 @@ router.get('/users/:UserID', (req, res) => {
             const mailOptions = {
                 from: 'deproject237344@gmail.com <Lost & Found Center>',
                 to: result.email,
-                subject: 'TESTING',
-                text: 'Greetings from the Lost & Found Center!!\n\nYour QR Code was recentlry scanned by someone!\n\nHope to recieve a call soon by them.'
+                subject: "Your QR Code was recently scanned!",
+                text: 'Greetings from the Lost & Found Center!!\n\nYour QR Code was recently scanned by someone!\n\nHope to recieve a call soon by them.'
             };
-
-            console.log('USER: ', user);
 
             if(user.qrcount > user.qrcountprev) { 
                 transporter.sendMail(mailOptions, (err, data) => {
                     if(err) {
                         return console.log('Error while sending mail: ', err);
                     }
-                
-                    console.log('MAIL SENT');
                 });
 
                 UserDetails.findOneAndUpdate({userID}, {
