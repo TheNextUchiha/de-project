@@ -2,11 +2,21 @@ var express = require('express');
 const router = express.Router();
 const _ = require('lodash');
 const passport = require('passport');
+const mailer = require('nodemailer');
 const {ObjectID} = require('mongodb');
 const fs = require('fs');
 
 var {User} = require('./../server/models/user');
 var {UserDetails} = require('./../server/models/userDetails');
+
+// NodeMailer Config
+const transporter = mailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user:'deproject237244@gmail.com',
+        pass:'7Evn9LrFF6j5hLK'
+    }
+});
 
 // To check if a user is logged in or not
 var loggedin = (req, res, next) => {
@@ -48,6 +58,44 @@ router.get('/users/:UserID', (req, res) => {
         User.findById(userID, (err, result) => {
             if(err) {
                 return res.status(404).send();
+            }
+
+            const mailOptions = {
+                from: 'deproject237344@gmail.com <Lost & Found Center>',
+                to: result.email,
+                subject: 'TESTING',
+                text: 'Greetings from the Lost & Found Center!!\n\nYour QR Code was recentlry scanned by someone!\n\nHope to recieve a call soon by them.'
+            };
+
+            UserDetails.findOneAndUpdate({userID}, {
+                $inc: {
+                    qrcount: 1
+                }
+            }, (err, result) => {
+                if(err) {
+                    console.log('ERROR: ', err);
+                }
+            });
+
+            if(user.qrcount > user.qrcountprev) { 
+                transporter.sendMail(mailOptions, (err, data) => {
+                    if(err) {
+                        return console.log('Error while sending mail: ', err);
+                    }
+                
+                    console.log('MAIL SENT');
+                });
+
+                UserDetails.findOneAndUpdate({userID}, {
+                    $inc: {
+                        qrcountprev: 1
+                    }
+                }, (err, result) => {
+                    if(err) {
+                        console.log('ERROR: ', err);
+                        return res.redirect('home');
+                    }
+                });
             }
 
             res.render('qr-result', {

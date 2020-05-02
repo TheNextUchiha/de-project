@@ -51,6 +51,14 @@ var UserDetailsSchema = new mongoose.Schema({
     },
     qr: {
         type: String
+    },
+    qrcount: {
+        type: Number,
+        default: 0
+    },
+    qrcountprev: {
+        type: Number,
+        default: 0
     }
 });
 

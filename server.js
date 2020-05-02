@@ -26,7 +26,7 @@ app.use(express.json());                                    // To Parse JSON dat
 app.use(cookieParser());                                    // To Parse Cookie data
 app.use(express.static(__dirname + '/views'));              // To include static HTML pages
 app.use(session({                                           // Session Config
-    secret: 'mysecret',
+    secret: 'bruhbruhbruh',
     saveUninitialized: false,
     resave: false
 }));

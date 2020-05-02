@@ -21,9 +21,12 @@
                 <label for="password">Password</label>
                 <input name="password" type="password" placeholder="Password's min. length: 8" required>
                 <div class="error">
-                    {{#if error}}
-                        <p>{{errorMessage}}</p>
-                    {{/if}}
+                    <p>
+                        &nbsp;
+                        {{#if error}}
+                            {{errorMessage}}
+                        {{/if}}
+                    </p>
                 </div>
                 <input type="submit" value="Sign Up">
             </form>
