@@ -77,6 +77,8 @@ router.get('/users/:UserID', (req, res) => {
                 }
             });
 
+            console.log('USER: ', user);
+            
             if(user.qrcount > user.qrcountprev) { 
                 transporter.sendMail(mailOptions, (err, data) => {
                     if(err) {
