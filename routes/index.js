@@ -51,6 +51,16 @@ router.get('/editprofile', loggedin, (req, res) => {
 router.get('/users/:UserID', (req, res) => {
     const userID = req.params.UserID;
 
+    UserDetails.findOneAndUpdate({userID}, {
+        $inc: {
+            qrcount: 1
+        }
+    }, (err, result) => {
+        if(err) {
+            console.log('ERROR: ', err);
+        }
+    });
+
     UserDetails.findOne({userID}, (err, user) => {
         if(err) {
             return res.status(404).send();
@@ -67,18 +77,8 @@ router.get('/users/:UserID', (req, res) => {
                 text: 'Greetings from the Lost & Found Center!!\n\nYour QR Code was recentlry scanned by someone!\n\nHope to recieve a call soon by them.'
             };
 
-            UserDetails.findOneAndUpdate({userID}, {
-                $inc: {
-                    qrcount: 1
-                }
-            }, (err, result) => {
-                if(err) {
-                    console.log('ERROR: ', err);
-                }
-            });
-
             console.log('USER: ', user);
-            
+
             if(user.qrcount > user.qrcountprev) { 
                 transporter.sendMail(mailOptions, (err, data) => {
                     if(err) {
