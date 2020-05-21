@@ -111,7 +111,7 @@ router.get('/generate-qr', loggedin, (req, res) => {
     
     UserDetails.findOneAndUpdate({userID}, {
         $set: {
-            qr: 'http://api.qrserver.com/v1/create-qr-code/?data=http://de-project-git-de-project-237244.apps.us-east-1.starter.openshift-online.com/users/'+userID+'&size=600x600&margin=10'
+            qr: 'http://api.qrserver.com/v1/create-qr-code/?data=https://secure-stream-40258.herokuapp.com/users/'+userID+'&size=600x600&margin=10'
         }
     }, (err, result) => {
         if(err) {
