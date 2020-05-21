@@ -9,6 +9,7 @@ const passport = require('passport');
 const {mongoose} = require('./server/db/mongoose');
 const {User} = require('./server/models/user');
 
+const port = process.env.PORT || 8080;
 // Requiring Passport-config
 require('./passport-config')(passport);
 
@@ -49,7 +50,11 @@ app.use((req, res, next) => {
 
 //App initialization at Express server on a specified port no.
 
-var server = app.listen(8080, () => {
-    var port = server.address().port;
-    console.log(`Server is up at port ${port}`);
+// var server = app.listen(8080, () => {            \\ For RedHat OpenShift
+//     var port = server.address().port;
+//     console.log(`Server is up at port ${port}`);
+// });
+
+app.listen(port, () => {
+    console.log('Server up at port: ' + port);
 });
