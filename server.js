@@ -1,21 +1,27 @@
-//cmd for Heroku & gitbash for Git and Github
-
 const express = require('express');
 const favicon = require('serve-favicon');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const passport = require('passport');
+const MongoDBStore = require('connect-mongodb-session')(session);
 
 const {mongoose} = require('./server/db/mongoose');
 const {User} = require('./server/models/user');
 
-const port = process.env.PORT || 8080;
-// Requiring Passport-config
-require('./passport-config')(passport);
-
 const index = require('./routes/index');
 
-var app = express();
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv/config');
+}
+
+const port = process.env.PORT;
+
+const app = express();
+
+// ---> Connecting to MongoDB for storing sessions <---
+const store = new MongoDBStore({
+    uri: 'mongodb://localhost:27017/LostAndFound',
+    collection: 'sessions'
+});
 
 //Handlebars Setup
 app.set('view engine','hbs');
@@ -28,13 +34,14 @@ app.use(cookieParser());                                    // To Parse Cookie d
 app.use(express.static(__dirname + '/views'));              // To include static HTML pages
 app.use(session({                                           // Session Config
     secret: 'bruhbruhbruh',
+    resave: false,
     saveUninitialized: false,
-    resave: false
+    unset: 'destroy',
+    store: store,
+    cookie: {
+        maxAge: 1000 * 60 * 30     // 30 minutes --> Format: millisec * sec * min
+    }
 }));
-
-// Passport Setup
-app.use(passport.initialize());     // Passport Initialization
-app.use(passport.session());        // Passport Session Management
 
 // -----> Routes <-----
 app.use('/', index);

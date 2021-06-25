@@ -1,8 +1,11 @@
 .env
+.vscode
+.jshintrc
 node_modules
 resources
 htmls
 vendors
-misc.js
 nodemailer.jpg
+misc.js
 mailtest.js
+passport-config.js

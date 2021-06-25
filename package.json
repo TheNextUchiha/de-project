@@ -11,21 +11,23 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "biguint-format": "^1.0.2",
+    "connect-mongodb-session": "^2.4.1",
     "cookie-parser": "^1.4.5",
-    "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "express-session": "^1.17.1",
-    "hbs": "^4.1.1",
-    "lodash": "^4.17.19",
-    "mongodb": "^3.6.0",
-    "mongoose": "^5.9.28",
-    "nodemailer": "^6.4.11",
+    "express-session": "^1.17.2",
+    "hbs": "^4.1.2",
+    "lodash": "^4.17.21",
+    "mongodb": "^3.6.9",
+    "mongoose": "^5.12.11",
+    "nodemailer": "^6.6.1",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "serve-favicon": "^2.5.0",
-    "validator": "^13.1.1"
+    "validator": "^13.6.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "dotenv": "^8.6.0"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TheNextUchiha/de-project.git"

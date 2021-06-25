@@ -1,31 +1,28 @@
-var express = require('express');
-const router = express.Router();
+const express = require('express');
 const _ = require('lodash');
 const passport = require('passport');
 const mailer = require('nodemailer');
 const {ObjectID} = require('mongodb');
 const fs = require('fs');
 
-var {User} = require('./../server/models/user');
-var {UserDetails} = require('./../server/models/userDetails');
+const router = express.Router();
+
+const {authenticate} = require('./../middlewares/authenticate');
+const {User} = require('./../server/models/user');
+const {UserDetails} = require('./../server/models/userDetails');
+
+if(process.env.NODE_ENV !== 'production') {
+    require('dotenv/config');
+}
 
 // NodeMailer Config
 const transporter = mailer.createTransport({
     service: 'gmail',
     auth: {
-        user:'deproject237244@gmail.com',
-        pass:'7Evn9LrFF6j5hLK'
+        user: process.env.GMAIL_ID,
+        pass: process.env.GMAIL_PASSWORD
     }
 });
-
-// To check if a user is logged in or not
-var loggedin = (req, res, next) => {
-    if(req.isAuthenticated()) {
-        next();
-    } else {
-        res.redirect('/login');
-    }
-};
 
 // -----> GET Routes <-----
 router.get('/', (req, res) => {
@@ -44,7 +41,7 @@ router.get('/signup', (req, res) => {
     res.render('signup');
 });
 
-router.get('/editprofile', loggedin, (req, res) => {
+router.get('/editprofile', authenticate, (req, res) => {
     res.render('editprofile');
 });
 
@@ -73,7 +70,7 @@ router.get('/users/:UserID', (req, res) => {
             const mailOptions = {
                 from: 'deproject237344@gmail.com <Lost & Found Center>',
                 to: result.email,
-                subject: "Your QR Code was recently scanned!",
+                subject: 'Your QR Code was recently scanned!',
                 text: 'Greetings from the Lost & Found Center!!\n\nYour QR Code was recently scanned by someone!\n\nHope to recieve a call soon by them.'
             };
 
@@ -106,8 +103,8 @@ router.get('/users/:UserID', (req, res) => {
     });
 });
 
-router.get('/generate-qr', loggedin, (req, res) => {
-    const userID = req.session.passport.user.userID; 
+router.get('/generate-qr', authenticate, (req, res) => {
+    const userID = req.session.user.userID; 
     
     UserDetails.findOneAndUpdate({userID}, {
         $set: {
@@ -131,8 +128,8 @@ router.get('/generate-qr', loggedin, (req, res) => {
     });
 });
 
-router.get('/home', loggedin, (req, res) => {
-    const userID = req.session.passport.user.userID;
+router.get('/home', authenticate, (req, res) => {
+    const userID = req.session.user.userID;
 
     User.findById(userID, (err, user) => {
         if(err) {
@@ -169,8 +166,17 @@ router.get('/home', loggedin, (req, res) => {
 });
 
 router.get('/logout', (req, res) => {
-    req.logout();
-    res.redirect('/');
+    try {
+        req.session.destroy(err => {
+            if(err) {
+                return res.redirect('/home');
+            }
+            res.clearCookie('cookie');
+            res.redirect('/');
+        });
+    } catch(err) {
+        res.send(`Error while logging you out: ${err}`);
+    }
 });
 
 // -----> POST Routes <-----
@@ -208,14 +214,33 @@ router.post('/signup', (req, res) => {
     });
 });
 
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
-}));
+router.post('/login', async (req, res) => {
+    try {
+        const body = _.pick(req.body, ['username', 'password']);
+    
+        const user = await User.findOne({username: body.username.toLowerCase()});
+    
+        if(user) {
+            if(user.comparePassword(body.password, user.password)) {
+                req.session.user = {
+                    username: user.username,
+                    userID: user._id
+                };
+                res.redirect('/home');
+            } else {
+                res.redirect(400, '/');
+            }
+        } else {
+            res.redirect('/');
+        }
+    } catch(err) {
+        res.send(500);
+    }
+});
 
-router.post('/editprofile', (req, res) => {
+router.post('/editprofile', authenticate, (req, res) => {
     const body = _.pick(req.body, ['name', 'mobile', 'state', 'address', 'sec_que', 'sec_ans']);
-    const userID = new ObjectID(req.session.passport.user.userID);
+    const userID = new ObjectID(req.session.user.userID);
     
     User.findById(userID, (err, user) => {
         if(err) {
