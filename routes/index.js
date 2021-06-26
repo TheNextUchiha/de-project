@@ -1,28 +1,17 @@
 const express = require('express');
 const _ = require('lodash');
-const passport = require('passport');
-const mailer = require('nodemailer');
 const {ObjectID} = require('mongodb');
-const fs = require('fs');
 
 const router = express.Router();
 
 const {authenticate} = require('./../middlewares/authenticate');
 const {User} = require('./../server/models/user');
 const {UserDetails} = require('./../server/models/userDetails');
+const {transporter} = require('./../utils/nodemailer');
 
 if(process.env.NODE_ENV !== 'production') {
     require('dotenv/config');
 }
-
-// NodeMailer Config
-const transporter = mailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.GMAIL_ID,
-        pass: process.env.GMAIL_PASSWORD
-    }
-});
 
 // -----> GET Routes <-----
 router.get('/', (req, res) => {
@@ -79,6 +68,7 @@ router.get('/users/:UserID', (req, res) => {
                     if(err) {
                         return console.log('Error while sending mail: ', err);
                     }
+                    console.log('MAIL SENT!');
                 });
 
                 UserDetails.findOneAndUpdate({userID}, {
