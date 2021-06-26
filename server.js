@@ -19,7 +19,7 @@ const app = express();
 
 // ---> Connecting to MongoDB for storing sessions <---
 const store = new MongoDBStore({
-    uri: 'mongodb://localhost:27017/LostAndFound',
+    uri: process.env.MONGO_URI,
     collection: 'sessions'
 });
 
