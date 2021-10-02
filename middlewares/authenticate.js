@@ -1,16 +1,16 @@
 const authenticate = (req, res, next) => {
     try {
-        if(!req.session.user) {
+        if (!req.session.user) {
             throw new Error('Please login');
         } else {
             next();
         }
-    } catch(err) {
+    } catch (err) {
         res.render('login', {
             error: true,
-            errorMessage: err
+            errorMessage: err,
         });
     }
 };
 
-module.exports = {authenticate};
+module.exports = { authenticate };

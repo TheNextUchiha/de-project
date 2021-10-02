@@ -1,39 +1,39 @@
 {
-  "name": "de_project",
-  "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "biguint-format": "^1.0.2",
-    "cookie-parser": "^1.4.5",
-    "express": "^4.17.1",
-    "express-session": "^1.17.2",
-    "hbs": "^4.1.2",
-    "lodash": "^4.17.21",
-    "mongodb": "^3.6.9",
-    "mongoose": "^5.12.11",
-    "nodemailer": "^6.6.1",
-    "passport": "^0.4.1",
-    "passport-local": "^1.0.0",
-    "serve-favicon": "^2.5.0",
-    "validator": "^13.6.0"
-  },
-  "devDependencies": {
-    "dotenv": "^8.6.0"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/TheNextUchiha/de-project.git"
-  },
-  "bugs": {
-    "url": "https://github.com/TheNextUchiha/de-project/issues"
-  },
-  "homepage": "https://github.com/TheNextUchiha/de-project#readme",
-  "description": ""
+    "name": "de_project",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "start": "node server.js"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "^2.4.3",
+        "biguint-format": "^1.0.2",
+        "connect-mongo": "^4.6.0",
+        "express": "^4.17.1",
+        "express-session": "^1.17.2",
+        "hbs": "^4.1.2",
+        "lodash": "^4.17.21",
+        "mongodb": "^4.1.2",
+        "mongoose": "^5.12.11",
+        "nodemailer": "^6.6.1",
+        "passport": "^0.4.1",
+        "passport-local": "^1.0.0",
+        "serve-favicon": "^2.5.0",
+        "validator": "^13.6.0"
+    },
+    "devDependencies": {
+        "dotenv": "^8.6.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TheNextUchiha/de-project.git"
+    },
+    "bugs": {
+        "url": "https://github.com/TheNextUchiha/de-project/issues"
+    },
+    "homepage": "https://github.com/TheNextUchiha/de-project#readme",
+    "description": ""
 }

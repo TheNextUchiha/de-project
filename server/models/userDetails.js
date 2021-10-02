@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const {ObjectID} = require('mongodb');
+const { ObjectID } = require('mongodb');
 const crypto = require('crypto');
 const format = require('biguint-format');
 
@@ -17,7 +17,7 @@ var UserDetailsSchema = new mongoose.Schema({
         type: String,
         // required: true,
         trim: true,
-        minlegth: 1
+        minlegth: 1,
     },
     mobilenum: {
         type: Number,
@@ -25,41 +25,41 @@ var UserDetailsSchema = new mongoose.Schema({
         unique: true,
         default: format(crypto.randomBytes(4), 'dec'),
         minlength: 10,
-        maxlength: 10
+        maxlength: 10,
     },
     state: {
         type: String,
         // required: true,
-        default: undefined
+        default: undefined,
     },
     address: {
         type: String,
         // required: true,
         trim: true,
-        default: undefined
+        default: undefined,
     },
     sec_que: {
         type: Number,
         // required: true,
-        default: null
+        default: null,
     },
     sec_ans: {
         type: String,
         // required: true,
         trim: true,
-        default: undefined
+        default: undefined,
     },
     qr: {
-        type: String
+        type: String,
     },
     qrcount: {
         type: Number,
-        default: 0
+        default: 0,
     },
     qrcountprev: {
         type: Number,
-        default: 0
-    }
+        default: 0,
+    },
 });
 
 // UserSchema methods are used to apply methods on an instance of a User object.
@@ -70,10 +70,10 @@ var UserDetailsSchema = new mongoose.Schema({
 
 // UserSchema statics is used to apply a method on the entire User Class/Schema.
 
-UserDetailsSchema.pre('save', function(next) {
+UserDetailsSchema.pre('save', function (next) {
     var user = this;
 
-    if(user.isModified('password')) {
+    if (user.isModified('password')) {
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(user.password, salt, (err, resHash) => {
                 user.password = resHash;
@@ -85,6 +85,10 @@ UserDetailsSchema.pre('save', function(next) {
     }
 });
 
-var UserDetails = mongoose.model('UserDetails', UserDetailsSchema, 'user_details');
+var UserDetails = mongoose.model(
+    'UserDetails',
+    UserDetailsSchema,
+    'user_details'
+);
 
-module.exports = {UserDetails};
+module.exports = { UserDetails };

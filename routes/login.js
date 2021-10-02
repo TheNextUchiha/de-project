@@ -3,7 +3,7 @@ const _ = require('lodash');
 
 const router = express.Router();
 
-const {User} = require('./../server/models/user');
+const { User } = require('./../server/models/user');
 
 router.get('/login', (req, res) => {
     res.render('login');
@@ -12,14 +12,16 @@ router.get('/login', (req, res) => {
 router.post('/login', async (req, res) => {
     try {
         const body = _.pick(req.body, ['username', 'password']);
-    
-        const user = await User.findOne({username: body.username.toLowerCase()});
-    
-        if(user) {
-            if(user.comparePassword(body.password, user.password)) {
+
+        const user = await User.findOne({
+            username: body.username.toLowerCase(),
+        });
+
+        if (user) {
+            if (user.comparePassword(body.password, user.password)) {
                 req.session.user = {
                     username: user.username,
-                    userID: user._id
+                    userID: user._id,
                 };
                 res.redirect('/home');
             } else {
@@ -28,7 +30,7 @@ router.post('/login', async (req, res) => {
         } else {
             res.redirect('/');
         }
-    } catch(err) {
+    } catch (err) {
         res.send(500);
     }
 });

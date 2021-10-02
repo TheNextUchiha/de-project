@@ -11,26 +11,26 @@ var UserSchema = new mongoose.Schema({
         unique: true,
         validate: {
             validator: validator.isEmail,
-            message: '{VALUE} is not a valid email.'
-        }
+            message: '{VALUE} is not a valid email.',
+        },
     },
     username: {
         type: String,
         required: true,
         trim: true,
         minlength: 1,
-        unique: true
+        unique: true,
     },
     password: {
         type: String,
         required: true,
-        minlength: 8
+        minlength: 8,
     },
     counter: {
         type: Number,
         required: true,
-        default: 0
-    }
+        default: 0,
+    },
 });
 
 // UserSchema methods are used to apply methods on an instance of a User object.
@@ -40,10 +40,10 @@ UserSchema.methods.comparePassword = (password, hash) => {
 
 // UserSchema statics is used to apply a method on the entire User Class/Schema.
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
     var user = this;
 
-    if(user.isModified('password')) {
+    if (user.isModified('password')) {
         bcrypt.genSalt(10, (err, salt) => {
             bcrypt.hash(user.password, salt, (err, resHash) => {
                 user.password = resHash;
@@ -57,4 +57,4 @@ UserSchema.pre('save', function(next) {
 
 var User = mongoose.model('User', UserSchema, 'users');
 
-module.exports = {User};
+module.exports = { User };

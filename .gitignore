@@ -2,6 +2,7 @@
 .vscode
 .jshintrc
 node_modules
+devFiles
 desktop.ini
 resources
 htmls

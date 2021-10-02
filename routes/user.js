@@ -1,15 +1,15 @@
 const express = require('express');
 const _ = require('lodash');
-const {ObjectID} = require('mongodb');
+const { ObjectID } = require('mongodb');
 
 const router = express.Router();
 
-const {authenticate} = require('./../middlewares/authenticate');
-const {User} = require('./../server/models/user');
-const {UserDetails} = require('./../server/models/userDetails');
-const {transporter} = require('./../utils/nodemailer');
+const { authenticate } = require('./../middlewares/authenticate');
+const { User } = require('./../server/models/user');
+const { UserDetails } = require('./../server/models/userDetails');
+const { transporter } = require('./../utils/nodemailer');
 
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
     require('dotenv/config');
 }
 
@@ -19,14 +19,12 @@ router.get('/users/:UserID', async (req, res) => {
     let user;
 
     try {
-        user = await UserDetails.findOne({userID});
+        user = await UserDetails.findOne({ userID });
         user.qrcount += 1;
         await user.save();
-    } catch(err) {
+    } catch (err) {
         return res.send('Error while finding the user.', err);
     }
-
-
 
     // UserDetails.findOne({userID}, (err, user) => {
     //     if(err) {
@@ -44,7 +42,7 @@ router.get('/users/:UserID', async (req, res) => {
     //             text: 'Greetings from the Lost & Found Center!!\n\nYour QR Code was recently scanned by someone!\n\nHope to recieve a call soon by them.'
     //         };
 
-    //         if(user.qrcount > user.qrcountprev) { 
+    //         if(user.qrcount > user.qrcountprev) {
     //             transporter.sendMail(mailOptions, (err, data) => {
     //                 if(err) {
     //                     return console.log('Error while sending mail: ', err);

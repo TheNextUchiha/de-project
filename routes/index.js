@@ -2,9 +2,9 @@ const express = require('express');
 
 const router = express.Router();
 
-const {User} = require('./../server/models/user');
+const { User } = require('./../server/models/user');
 
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
     require('dotenv/config');
 }
 
@@ -20,13 +20,13 @@ router.get('/forgot', (req, res) => {
 // -----> POST Routes <-----
 
 router.post('/forgot', (req, res) => {
-    const {email} = req.body;
+    const { email } = req.body;
 
-    User.findOne({email}, (err, user) => {
-        if(!user) {
+    User.findOne({ email }, (err, user) => {
+        if (!user) {
             return res.render('forgot', {
                 error: true,
-                errorMessage:  'User not Found'
+                errorMessage: 'User not Found',
             });
         }
         // res.header('email', email);
@@ -35,7 +35,6 @@ router.post('/forgot', (req, res) => {
 });
 
 module.exports = router;
-
 
 /*
 -----> Under GET /home <-----

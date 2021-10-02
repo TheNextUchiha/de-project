@@ -1,6 +1,6 @@
 var mongoose = require('mongoose');
 
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
     require('dotenv/config');
 }
 
@@ -10,20 +10,24 @@ const localURI = 'mongodb://localhost:27017/LostAndFound';
 const mongoURI = process.env.MONGO_URI;
 
 try {
-    mongoose.connect(mongoURI, {      // For Online
-        useUnifiedTopology: true, 
+    mongoose.connect(localURI, {
+        // For Online
+        useUnifiedTopology: true,
         useNewUrlParser: true,
-        useFindAndModify: false
+        useFindAndModify: false,
     });
 
     // mongoose.connect(localURI, {      // For Offline
-    //     useUnifiedTopology: true, 
+    //     useUnifiedTopology: true,
     //     useNewUrlParser: true,
     //     useFindAndModify: false
     // });
     console.log('DB Online!');
-} catch(err) {
-    console.log('Error while connecting Online Mongo.\nSwitching to Offline Mongo.\nError for reference:', err);
+} catch (err) {
+    console.log(
+        'Error while connecting Online Mongo.\nSwitching to Offline Mongo.\nError for reference:',
+        err
+    );
 }
 
-module.exports = {mongoose};
+module.exports = { mongoose };
