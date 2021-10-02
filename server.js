@@ -5,9 +5,12 @@ const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
 
 const {mongoose} = require('./server/db/mongoose');
-const {User} = require('./server/models/user');
 
 const index = require('./routes/index');
+const login = require('./routes/login');
+const signup = require('./routes/signup');
+const editProfile = require('./routes/editprofile');
+const getUser = require('./routes/user');
 
 if(process.env.NODE_ENV !== 'production') {
     require('dotenv/config');
@@ -27,7 +30,7 @@ const store = new MongoDBStore({
 app.set('view engine','hbs');
 
 // ----> Express Middle-wares <-----
-app.use(favicon(__dirname + '/public/icons/favicon.ico'));   // To serve Favicon to the client
+app.use(favicon(__dirname + '/public/icons/favicon.ico'));  // To serve Favicon to the client
 app.use(express.urlencoded({extended: false}));             // To Parse URL data
 app.use(express.json());                                    // To Parse JSON data
 app.use(cookieParser());                                    // To Parse Cookie data
@@ -44,7 +47,11 @@ app.use(session({                                           // Session Config
 }));
 
 // -----> Routes <-----
-app.use('/', index);
+app.use(index);
+app.use(login);
+app.use(signup);
+app.use(editProfile);
+app.use(getUser);
 
 /*
 -----> Maintenance Mode <-----
