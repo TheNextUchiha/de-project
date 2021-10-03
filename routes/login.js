@@ -17,21 +17,21 @@ router.post('/login', async (req, res) => {
             username: body.username.toLowerCase(),
         });
 
-        if (user) {
-            if (user.comparePassword(body.password, user.password)) {
-                req.session.user = {
-                    username: user.username,
-                    userID: user._id,
-                };
-                res.redirect('/home');
-            } else {
-                res.redirect(400, '/');
-            }
+        if (!user) {
+            return res.redirect('/');
+        }
+
+        if (user.comparePassword(body.password, user.password)) {
+            req.session.user = {
+                username: user.username,
+                userID: user._id,
+            };
+            return res.redirect('/home');
         } else {
-            res.redirect('/');
+            return res.redirect(400, '/');
         }
     } catch (err) {
-        res.send(500);
+        return res.status(500).send();
     }
 });
 

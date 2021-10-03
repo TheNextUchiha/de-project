@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 const bcrypt = require('bcryptjs');
-const { ObjectID } = require('mongodb');
 const crypto = require('crypto');
 const format = require('biguint-format');
 

@@ -10,7 +10,7 @@ const localURI = 'mongodb://localhost:27017/LostAndFound';
 const mongoURI = process.env.MONGO_URI;
 
 try {
-    mongoose.connect(localURI, {
+    mongoose.connect(mongoURI, {
         // For Online
         useUnifiedTopology: true,
         useNewUrlParser: true,
