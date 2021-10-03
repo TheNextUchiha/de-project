@@ -21,7 +21,7 @@ const port = process.env.PORT;
 const app = express();
 
 const sessionOptions = {
-    mongoUrl: 'mongodb://localhost:27017/LostAndFound',
+    mongoUrl: process.env.MONGO_URI,
     collectionName: 'sessions',
 };
 
