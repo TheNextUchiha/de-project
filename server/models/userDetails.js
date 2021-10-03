@@ -7,7 +7,7 @@ let defMobileNum = 0;
 
 var UserDetailsSchema = new mongoose.Schema({
     userID: {
-        type: ObjectID,
+        type: String,
         // required: true,
         unique: true,
     },
