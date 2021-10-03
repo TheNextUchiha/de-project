@@ -1,26 +1,25 @@
 /* ---------------------- */
 /* ----> Basic Setup <--- */
 /* ---------------------- */
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-html{
+html {
     background-color: #ffffff;
     color: #555555;
-    font-family: 'Lato', 'Arial',  sans-serif;
+    font-family: 'Lato', 'Arial', sans-serif;
     font-size: 20px;
     font-weight: 300;
     text-rendering: optimizeLegibility;
 }
 
-
 /* ----------------------------- */
 /* ---> Reusable components <--- */
 /* ----------------------------- */
 
-.row{
+.row {
     max-width: 1140px;
     margin: 0 auto;
 }
@@ -35,8 +34,9 @@ html{
 
 /* Header */
 
-header{
-    background-image:linear-gradient(rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url(./../images/background/pxfuel-min.jpg);
+header {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+        url(./../images/background/pxfuel-min.jpg);
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -57,7 +57,7 @@ header{
 }
 
 .main-nav li a:link,
-.main-nav li a:visited { 
+.main-nav li a:visited {
     padding: 8px 0;
     color: #ffffff;
     text-decoration: none;
@@ -78,9 +78,9 @@ header{
     border: inherit;
     padding: 8px 0;
     margin: 0;
-	cursor: pointer;
+    cursor: pointer;
     outline: inherit;
-	font-family: 'Lato','Arial',sans-serif;
+    font-family: 'Lato', 'Arial', sans-serif;
     font-size: 90%;
     font-weight: 400;
     text-transform: uppercase;
@@ -100,19 +100,17 @@ header{
 
 /* Section */
 
-section{
-    background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2));
+section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2));
     background-position: center;
     background-size: cover;
     height: 150px;
 }
 
-
-.main-details{
+.main-details {
     padding: 0 9%;
     color: white;
 }
-
 
 h1 {
     padding-top: 20px;
@@ -138,7 +136,7 @@ h1 {
 }
 
 .qr-btn:link,
-.qr-btn:visited {    
+.qr-btn:visited {
     background-color: #e67e22;
     border: 1px solid #e67e22;
     color: #ffffff;
@@ -146,16 +144,16 @@ h1 {
 
 .qr-btn:hover,
 .qr-btn:active {
-    background-color:#c4600a;
+    background-color: #c4600a;
     border: 1px solid #c4600a;
     transition: background-color 0.3s, border 0.3s, color 0.3s;
 }
 
-.loginbox{
+.loginbox {
     border-radius: 5%;
     background: rgba(24, 24, 24, 0.76);
     color: #fff;
-    height:350px;
+    height: 350px;
     width: 600px;
     padding: 30px 30px;
     margin-top: 40px;

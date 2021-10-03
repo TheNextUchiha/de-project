@@ -1,12 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<html lang='en'>
     <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset='UTF-8' />
+        <meta name='viewport' content='width=device-width, initial-scale=1.0' />
 
-        <link rel="stylesheet" type="text/css" href="./css/home.css">
-        <link rel="stylesheet" type="text/css" href="./css/homeresp.css">
-        <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,700&display=swap" rel="stylesheet">
+        <link rel='stylesheet' type='text/css' href='./css/home.css' />
+        <link rel='stylesheet' type='text/css' href='./css/homeresp.css' />
+        <link
+            href='https://fonts.googleapis.com/css?family=Lato:300,300i,400,700&display=swap'
+            rel='stylesheet'
+        />
 
         <title>Home - Lost & Found Center</title>
     </head>
@@ -14,31 +16,40 @@
         <header>
             <nav>
                 <section>
-                    <div class="row">
-                        <img class="logo" src="./../images/logo/round_l_f.png" alt="logo">
+                    <div class='row'>
+                        <img
+                            class='logo'
+                            src='./../images/logo/round_l_f.png'
+                            alt='logo'
+                        />
                     </div>
-                    <ul class="main-nav">
-                        <li><a href="/editprofile">Edit Profile</a></li>
+                    <ul class='main-nav'>
+                        <li><a href='/editprofile'>Edit Profile</a></li>
                         <li>
-                            <form action="/logout" method="GET">
-                                <input type="submit" class="logout-btn" value="Logout">
+                            <form action='/logout' method='GET'>
+                                <input
+                                    type='submit'
+                                    class='logout-btn'
+                                    value='Logout'
+                                />
                             </form>
                         </li>
                     </ul>
                 </section>
             </nav>
-            <div class="main-details">
-                <div class="details">
-                    <div class="loginbox">
+            <div class='main-details'>
+                <div class='details'>
+                    <div class='loginbox'>
                         <h1>Dashboard</h1>
-                        <label for="name">Name : {{ name }} </label><br>
-                        <label for="email">Email ID : {{ email }}</label><br>
-                        <label for="contact">Contact Number : {{ mobilenum }}</label><br>
-                        <label for="address">Address : {{ address }}</label><br>
+                        <label for='name'>Name : {{name}} </label><br />
+                        <label for='email'>Email ID : {{email}}</label><br />
+                        <label for='contact'>Contact Number :
+                            {{mobilenum}}</label><br />
+                        <label for='address'>Address : {{address}}</label><br />
                     </div>
                 </div>
                 <div>
-                    <a class="qr-btn" href="/generate-qr">Generate QR</a>
+                    <a class='qr-btn' href='/generate-qr'>Generate QR</a>
                 </div>
             </div>
         </header>

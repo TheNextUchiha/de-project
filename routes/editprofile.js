@@ -1,6 +1,5 @@
 const express = require('express');
 const _ = require('lodash');
-const { ObjectID } = require('mongodb');
 
 const router = express.Router();
 
@@ -8,11 +7,27 @@ const { authenticate } = require('./../middlewares/authenticate');
 const { User } = require('./../server/models/user');
 const { UserDetails } = require('./../server/models/userDetails');
 
-router.get('/editprofile', authenticate, (req, res) => {
-    res.render('editprofile');
+router.get('/editprofile', authenticate, async (req, res) => {
+    const userID = req.session.user.userID;
+    let user;
+
+    try {
+        user = await UserDetails.findOne({ userID });
+    } catch (err) {
+        return res.render('home', {
+            error: true,
+            errorMessage: 'User not found!',
+        });
+    }
+
+    console.log(user);
+
+    res.render('editprofile', { user });
 });
 
 router.post('/editprofile', authenticate, async (req, res) => {
+    const userID = req.session.user.userID;
+
     const body = _.pick(req.body, [
         'name',
         'mobile',
@@ -21,12 +36,11 @@ router.post('/editprofile', authenticate, async (req, res) => {
         'sec_que',
         'sec_ans',
     ]);
-    const userID = new ObjectID(req.session.user.userID);
 
     let user;
 
     try {
-        user = await User.findOne({ userID });
+        user = await User.findOne({ _id: userID });
     } catch (err) {
         console.log('ERROR: ', err);
         return res.render('home', {
@@ -37,8 +51,9 @@ router.post('/editprofile', authenticate, async (req, res) => {
 
     if (user.counter === 0) {
         body.sec_ans = body.sec_ans.toLowerCase();
+
         const userDetails = new UserDetails({
-            userID: new ObjectID(user._id),
+            userID: user._id,
             name: body.name,
             mobilenum: body.mobile,
             state: body.state,
@@ -62,39 +77,33 @@ router.post('/editprofile', authenticate, async (req, res) => {
 
             res.redirect('home');
         } catch (err) {
-            console.log('ERROR WHILE INCREMENTING');
             return res.redirect('login');
         }
-    } else {
-        let userToBeUpdated;
-        try {
-            userToBeUpdated = await UserDetails.findOne({ userID });
-        } catch (err) {
-            console.log('ERROR: ', err);
-            return res.redirect('editprofile');
-        }
+    }
 
-        userToBeUpdated.name = userToBeUpdated.name ? body.name : body.name;
-        userToBeUpdated.mobilenum = userToBeUpdated.mobilenum
-            ? body.mobile
-            : body.mobile;
-        userToBeUpdated.state = userToBeUpdated.state ? body.state : body.state;
-        userToBeUpdated.address = userToBeUpdated.address
-            ? body.address
-            : body.address;
-        userToBeUpdated.sec_que = userToBeUpdated.sec_que
-            ? body.sec_que
-            : body.sec_que;
-        userToBeUpdated.sec_ans = userToBeUpdated.sec_ans
-            ? body.sec_ans.toLowerCase()
-            : body.sec_ans.toLowerCase();
+    let userDetails;
 
-        try {
-            await userToBeUpdated.save();
-            return res.redirect('home');
-        } catch (err) {
-            return res.render('editprofile');
-        }
+    try {
+        userDetails = await UserDetails.findOne({ userID });
+    } catch (err) {
+        console.log('ERROR: ', err);
+        return res.redirect('editprofile');
+    }
+
+    body.sec_ans = body.sec_ans.toLowerCase();
+
+    userDetails.name = userDetails.name ? body.name : body.name;
+    userDetails.mobilenum = userDetails.mobilenum ? body.mobile : body.mobile;
+    userDetails.state = userDetails.state ? body.state : body.state;
+    userDetails.address = userDetails.address ? body.address : body.address;
+    userDetails.sec_que = userDetails.sec_que ? body.sec_que : body.sec_que;
+    userDetails.sec_ans = userDetails.sec_ans ? body.sec_ans : body.sec_ans;
+
+    try {
+        await userDetails.save();
+        return res.redirect('home');
+    } catch (err) {
+        return res.render('editprofile');
     }
 });
 

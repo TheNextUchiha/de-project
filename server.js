@@ -35,7 +35,6 @@ app.use(express.json()); // To Parse JSON data
 app.use(express.static(__dirname + '/views')); // To include static HTML pages
 app.use(
     session({
-        // Session Config
         secret: 'bruhbruhbruh',
         resave: false,
         saveUninitialized: false,
