@@ -9,6 +9,8 @@ mongoose.set('useCreateIndex', true);
 const localURI = 'mongodb://localhost:27017/LostAndFound';
 const mongoURI = process.env.MONGO_URI;
 
+console.log('mongoURI:', mongoURI);
+
 try {
     mongoose.connect(mongoURI, {
         // For Online
@@ -17,11 +19,6 @@ try {
         useFindAndModify: false,
     });
 
-    // mongoose.connect(localURI, {      // For Offline
-    //     useUnifiedTopology: true,
-    //     useNewUrlParser: true,
-    //     useFindAndModify: false
-    // });
     console.log('DB Online!');
 } catch (err) {
     console.log(
