@@ -128,5 +128,120 @@
             document.getElementById(state.toString()).innerText =
             'stateasdfasdf'
         </script>
+    {{#else}}
+        <body>
+            <div class='loginbox'>
+                <img src='./images/logo/avatar2.jpg' class='avatar' />
+                <h1>Edit Profile</h1>
+                <form method='POST' action='editprofile'>
+
+                    <p>Name</p>
+                    <input
+                        id='name'
+                        name='name'
+                        class='form-control'
+                        type='text'
+                    />
+
+                    {{! <p>E-mail</p>
+                <input type="email" name="email" class="form-control" placeholder="email@example.com" id="email">  
+
+                <p>Password</p>
+                <input type="password" name="password" name="" placeholder="Enter password"> }}
+
+                    <p>Mobile Number</p>
+                    <input
+                        type='text'
+                        name='mobile'
+                        class='form-control'
+                        placeholder='Mobile No.'
+                        id='mobile'
+                    />
+
+                    <p>State</p>
+                    <br />
+                    <select name='state' id='state'>
+                        <optgroup label='States'>
+                            <option id='ap' value='ap'>Andhra Pradesh</option>
+                            <option id='ar' value='ar'>Arunachal Pradesh</option>
+                            <option id='as' value='as'>Assam</option>
+                            <option id='br' value='br'>Bihar</option>
+                            <option id='cg' value='cg'>Chhattisgarh</option>
+                            <option id='ga' value='ga'>Goa</option>
+                            <option id='gj' value='gj'>Gujarat</option>
+                            <option id='hr' value='hr'>Haryana</option>
+                            <option id='hp' value='hp'>Himachal Pradesh</option>
+                            <option id='jh' value='jh'>Jharkhand</option>
+                            <option id='ka' value='ka'>Karnataka</option>
+                            <option id='kl' value='kl'>Kerala</option>
+                            <option id='mo' value='mp'>Madhya Pradesh</option>
+                            <option id='mh' value='mh'>Maharashtra</option>
+                            <option id='mn' value='mn'>Manipur</option>
+                            <option id='ml' value='ml'>Meghalaya</option>
+                            <option id='mz' value='mz'>Mizoram</option>
+                            <option id='nl' value='nl'>Nagaland</option>
+                            <option id='od' value='od'>Odisha</option>
+                            <option id='pb' value='pb'>Punjab</option>
+                            <option id='rj' value='rj'>Rajasthan</option>
+                            <option id='sk' value='sk'>Sikkim</option>
+                            <option id='tn' value='tn'>Tamil Nadu</option>
+                            <option id='ts' value='ts'>Telangana</option>
+                            <option id='tr' value='tr'>Tripura</option>
+                            <option id='up' value='up'>Uttar Pradesh</option>
+                            <option id='uk' value='uk'>Uttarakhand</option>
+                            <option id='wb' value='wb'>West Bengal</option>
+                        </optgroup>
+                        <optgroup label='UTs'>
+                            <option id='an' value='an'>
+                                Andaman and Nicobar Islands
+                            </option>
+                            <option id='ch' value='ch'>Chandigarh</option>
+                            <option id='dd' value='dd'>
+                                Dadra and Nagar Haveli and Daman and Diu
+                            </option>
+                            <option id='dl' value='dl'>Delhi</option>
+                            <option id='jk' value='jk'>Jammu and Kashmir</option>
+                            <option id='la' value='la'>Ladakh</option>
+                            <option id='ld' value='ld'>Lakshadweep</option>
+                            <option id='py' value='py'>Puducherry</option>
+                        </optgroup>
+                    </select>
+
+                    <p>Full Address</p>
+                    <textarea
+                        class='form-control'
+                        name='address'
+                        id='add'
+                        cols='30'
+                        rows='1'
+                    ></textarea>
+
+                    <p>Select a Security Question, in case if you forget your
+                        credentials:</p>
+                    <select name='sec_que' id='sec_que'>
+                        <option value='1'>Your Elementry School Name</option>
+                        <option value='2'>Your Car Number</option>
+                        <option value='3'>Your Nickname</option>
+                        <option value='4'>Your Pet's Name</option>
+                        <option value='5'>Your Favorite Book</option>
+                    </select>
+                    <br /><br />
+                    <input
+                        type='text'
+                        name='sec_ans'
+                        class='form-control'
+                        id='sec_que'
+                        placeholder='Your Answer will be stored Case Insensitive'
+                    />
+
+                    <input type='submit' name='' value='Save' id='savebtn' />
+                </form>
+            </div>
+        </body>
+        <script>
+            let state ={{{user.state}}}; console.log(state);
+            document.getElementById(state.toString()).innerText =
+            'stateasdfasdf'
+        </script>
     {{/if}}
 </html>
