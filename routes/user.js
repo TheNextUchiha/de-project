@@ -19,7 +19,7 @@ router.get('/users/:UserID', async (req, res) => {
     let user, userDetails;
 
     try {
-        user = await User.findOne({ userID });
+        user = await User.findOne({ _id: userID });
     } catch (err) {
         return res.status(500).send({
             error: err,
