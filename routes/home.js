@@ -1,4 +1,5 @@
 const express = require('express');
+const { ObjectId } = require('mongodb');
 
 const router = express.Router();
 
@@ -63,7 +64,12 @@ router.get('/home', authenticate, async (req, res) => {
     }
 
     try {
-        userDetails = await UserDetails.findOne({ userID });
+        try {
+            userDetails = await UserDetails.findOne({ userID });
+        } catch (err) {
+            console.log('error fetching userdetails', err);
+            return res.redirect('login');
+        }
 
         return res.render('home', {
             name: userDetails.name,
@@ -78,7 +84,7 @@ router.get('/home', authenticate, async (req, res) => {
 
 router.get('/logout', (req, res) => {
     try {
-        req.session.destroy((err) => {
+        req.session.destroy(err => {
             if (err) {
                 return res.redirect('/home');
             }

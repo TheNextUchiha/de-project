@@ -1,3 +1,5 @@
+const { ObjectId } = require('mongodb');
+
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
@@ -7,7 +9,7 @@ let defMobileNum = 0;
 
 var UserDetailsSchema = new mongoose.Schema({
     userID: {
-        type: String,
+        type: ObjectId,
         // required: true,
         unique: true,
     },

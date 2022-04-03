@@ -26,6 +26,7 @@ router.post('/login', async (req, res) => {
                 username: user.username,
                 userID: user._id,
             };
+
             return res.redirect('/home');
         } else {
             return res.redirect(400, '/');
