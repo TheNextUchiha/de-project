@@ -13,19 +13,19 @@
         "bcryptjs": "^2.4.3",
         "biguint-format": "^1.0.2",
         "connect-mongo": "^4.6.0",
-        "express": "^4.17.1",
-        "express-session": "^1.17.2",
-        "hbs": "^4.1.2",
+        "express": "^4.18.1",
+        "express-session": "^1.17.3",
+        "hbs": "^4.2.0",
         "lodash": "^4.17.21",
-        "mongodb": "^4.1.2",
-        "mongoose": "^5.12.11",
-        "nodemailer": "^6.6.1",
+        "mongodb": "^4.7.0",
+        "mongoose": "^6.4.4",
+        "nodemailer": "^6.7.7",
         "serve-favicon": "^2.5.0",
-        "validator": "^13.6.0"
+        "validator": "^13.7.0"
     },
     "devDependencies": {
-        "dotenv": "^8.6.0",
-        "nodemon": "^2.0.15"
+        "dotenv": "^16.0.1",
+        "nodemon": "^2.0.19"
     },
     "repository": {
         "type": "git",
