@@ -1,28 +1,28 @@
 ## DE Project
 
-A project that I and a couple of my buds made during our days at the college under the curriculum of Design Engineering (under GTU).
+This is a project that a few of my friends and I worked on during our time at college as part of the Design Engineering curriculum (under GTU).
 
-Basically, this project is a Node app using:
-- An Express server as the backend.
+Essentially, this project is a Node app that uses:
+- An Express server for the backend.
 - MongoDB as the database.
-- Handlebars for server-side rendering the pages.
-- And, the webpages were made using HTML5 and CSS3.
+- Handlebars for server-side rendering of the pages.
+- HTML5 and CSS3 for the webpages.
 
-### The use-case of this app:
-This app was made by a situation that occurred to us during the college days. Me and my buds used to commute daily to the college and one day one of my bud's wallet got stolen!
+### Use Case:
 
-So we thought, why not take this opportunity to make something that might help someone who can later find the wallet and maybe contact us back?
+This app was inspired by a situation that occurred during our college days. My friends and I used to commute to college every day, and one day, one of my friend's wallets got stolen!
 
-And thus, we decided to make a web app that can generate a QR code that can show a web page to whoever scans it and show them a contact that they can use to contact us. 
+So we thought, why not take this opportunity to create something that could help someone who finds the wallet and possibly contact us?
 
-There were no Apple AirTags at that time (2021) to solve this issue and it does cost a lot for the piece of tech it is (not complaining. it's awesome though, just not affordable for everyone).
+Thus, we decided to build a web app that generates a QR code, which leads to a webpage displaying contact details that can be used to reach us.
 
-So yeah, you just sign up to the app and add your contact details and generate a QR code for your account.
-You can stick that code to any of your belongings like your wallet, bag, folders, etc.
+At that time (2021), Apple AirTags weren’t available to solve this problem, and they were quite expensive for the technology they offered (not that we’re complaining—they're awesome, just not affordable for everyone).
 
-Whenever someone scans the QR code, you get a mail that your code was scanned by someone and the person who scanned it gets your contact details. We were kind of naive to leave the contact details open then.
+So, here’s how it works: You sign up for the app, add your contact details, and generate a QR code linked to your account. You can then attach the code to your belongings, like your wallet, bag, or folders.
 
-That's it!
+Whenever someone scans the QR code, you’ll receive an email notifying you that the code was scanned. The person who scanned it will also get your contact details. At the time, we were a bit naïve about leaving the contact details open like that.
+
+That’s it!
 Thanks for visiting and reading!
 
-- Farzan
+Farzan
